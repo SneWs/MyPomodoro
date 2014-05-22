@@ -1,0 +1,106 @@
+﻿<myPomodoro:MainWindow x:Class="MainWindow"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:myPomodoro="clr-namespace:MyPomodoro"
+                       xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+                       Style="{StaticResource EmptyWindow}"
+                       LogoData="" Foreground="Red"
+                       Width="375" Height="495" 
+                       DataContext="{Binding Source={StaticResource ModelManager}, Path=MainViewModel}"
+                       Title="{Binding WindowTitle}"
+                       Icon="Resources/pomodoro.png">
+    
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo Description="{Binding WindowTitle}" ThumbnailClipMargin="5">
+            <TaskbarItemInfo.ThumbButtonInfos>
+                <ThumbButtonInfoCollection>
+                    <ThumbButtonInfo x:Name="ThumbPlayButton" Command="{Binding StartStopPauseCommand}" 
+                                     DismissWhenClicked="False"
+                                     Description="Play" 
+                                     IsEnabled="{Binding IsPlayButtonEnabled}"
+                                     ImageSource="/MyPomodoro;component/Resources/play.png" />
+
+                    <ThumbButtonInfo x:Name="ThumbPauseButton" Command="{Binding StartStopPauseCommand}" 
+                                     DismissWhenClicked="False"
+                                     Description="Pause" 
+                                     IsEnabled="{Binding IsPauseButtonEnabled}"
+                                     ImageSource="/MyPomodoro;component/Resources/pause.png" />
+                </ThumbButtonInfoCollection>
+            </TaskbarItemInfo.ThumbButtonInfos>
+        </TaskbarItemInfo>
+    </Window.TaskbarItemInfo>
+    
+    <Grid Margin="8,48,8,8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <!-- Top Row -->
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="{Binding WindowTitle}" 
+                       Foreground="{StaticResource AccentBrush}" 
+                       FontSize="16" 
+                       FontWeight="Regular"
+                       Margin="8,-40,0,0" />
+        </StackPanel>
+        
+        <!-- Bottom Row -->
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+            <!-- First row -->
+            <TextBlock Text="{Binding TimeLeft, FallbackValue='00:00'}"
+                       FontSize="72" Foreground="OrangeRed"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Margin="0,8,0,24"/>
+            
+            <!-- Second Row -->
+            <Button Grid.Row="1" Margin="12" 
+                    FontSize="32" Command="{Binding StartStopPauseCommand}">
+                <TextBlock Text="{Binding CurrentButtonText}" />
+            </Button>
+
+            <!-- Third row -->
+            <StackPanel Grid.Row="2" Orientation="Horizontal" 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center"
+                        Margin="0,24">
+                
+                <Image Source="/MyPomodoro;component/Resources/pomodoro.png"
+                       Stretch="UniformToFill" 
+                       Width="64" 
+                       Margin="8"
+                       Opacity="{Binding Pomodoro1}" />
+                
+                <Image Source="/MyPomodoro;component/Resources/pomodoro.png"
+                       Stretch="UniformToFill"
+                       Width="64" 
+                       Margin="8"
+                       Opacity="{Binding Pomodoro2}" />
+                
+                <Image Source="/MyPomodoro;component/Resources/pomodoro.png"
+                       Stretch="UniformToFill"
+                       Width="64" 
+                       Margin="8"
+                       Opacity="{Binding Pomodoro3}" />
+                
+                <Image Source="/MyPomodoro;component/Resources/pomodoro.png"
+                       Stretch="UniformToFill"
+                       Width="64" 
+                       Margin="8" 
+                       Opacity="{Binding Pomodoro4}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</myPomodoro:MainWindow>
+    

@@ -1,0 +1,27 @@
+﻿<Application x:Class="MyPomodoro.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewModels="clr-namespace:MyPomodoro.ViewModels"
+             StartupUri="MainWindow.xaml">
+    
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.xaml" />
+                <ResourceDictionary Source="/FirstFloor.ModernUI;component/Assets/ModernUI.Dark.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <Color x:Key="AccentColor">OrangeRed</Color>
+
+            <viewModels:ModelManager x:Key="ModelManager" />
+
+
+            <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}" />
+
+            <Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Calibri" />
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
